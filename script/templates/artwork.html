@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artwork Info</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-size: 36px;
+      text-align: center;
+    }
+    .form-control {
+      border-radius: 5px;
+    }
+    .btn-primary {
+      border-radius: 5px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/index">MMA</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+         {% if user_type == 'admin' %}
+         <li class="nav-item">
+          <a class="nav-link" href="/artists/new">New Artist</a>
+         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/artworks/new">New Artwork</a>
+        </li>
+          {% endif %}
+        <li class="nav-item">
+          {% if user_type != 'admin' %}
+          <a class="btn btn-primary ml-2" href="/login">Login</a>
+          {% else %}
+          <a class="btn btn-primary ml-2" href="/logout">Logout</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <h1>Artwork Info</h1>
+
+     {% for artwork in artworks %}
+    <div class="card">
+      <div class="card-body">
+        <form method="post" action="{{ url_for('update_artwork') }}" id="artworkForm">
+           <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ artwork['Name'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ artwork['Title'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="dimensions">Dimensions</label>
+            <input type="text" class="form-control" id="dimensions" name="dimensions" value="{{ artwork['Dimensions'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="text" class="form-control" id="date" name="date" value="{{ artwork['Date'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="classification">Classification</label>
+            <input type="text" class="form-control" id="classification" name="classification" value="{{ artwork['Classification'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="medium">Medium</label>
+            <input type="text" class="form-control" id="medium" name="medium" value="{{ artwork['Medium'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="acquisitionDate">Acquisition Date</label>
+            <input type="text" class="form-control" id="acquisitionDate" name="acquisitionDate" value="{{ artwork['Acquisition Date'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <input type="hidden" name="artwork_id" value="{{ artwork['Artwork ID'] }}">
+          {% if user_type == 'admin' %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="{{ url_for('delete_artwork', artwork_id=artwork['Artwork ID']) }}"><button type="button" class="btn btn-primary">Delete</button></a>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Back</a>
+  </div>
+</body>
+</html>

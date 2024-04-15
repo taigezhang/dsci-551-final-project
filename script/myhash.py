@@ -21,11 +21,11 @@ def split_dataset_into_shards(file_path, total_shards=7):
     # 保存每个分片为CSV文件
     for shard_id, rows in sharded_data.items():
         df = pd.DataFrame(rows)
-        file_name = f'./hash_datasets/artworks_shard_{shard_id}.csv'
+        file_name = f'../datasets/artworks_shard_{shard_id}.csv'
         df.to_csv(file_name, index=False)
         print(f'Shard {shard_id} saved to {file_name}')
 
 
-file_path = 'artworks.csv'
+file_path = '../cleaned_artworks.csv'
 
 split_dataset_into_shards(file_path)

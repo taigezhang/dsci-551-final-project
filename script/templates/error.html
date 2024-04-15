@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-size: 36px;
+      text-align: center;
+    }
+    .btn-primary {
+      border-radius: 5px;
+    }
+    .card {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Error</h1>
+
+    <div class="card">
+      <div class="card-body">
+        <p>{{ error_msg }}</p>
+      </div>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Back</a>
+  </div>
+</body>
+</html>

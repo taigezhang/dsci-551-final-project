@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artwork Info</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-size: 36px;
+      text-align: center;
+    }
+    .form-control {
+      border-radius: 5px;
+    }
+    .btn-primary {
+      border-radius: 5px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/index">MMA</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+         {% if user_type == 'admin' %}
+         <li class="nav-item">
+          <a class="nav-link" href="/artists/new">New Artist</a>
+         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/artworks/new">New Artwork</a>
+        </li>
+          {% endif %}
+        <li class="nav-item">
+          {% if user_type != 'admin' %}
+          <a class="btn btn-primary ml-2" href="/login">Login</a>
+          {% else %}
+          <a class="btn btn-primary ml-2" href="/logout">Logout</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <h1>Create New Artwork</h1>
+
+    <div class="card">
+      <div class="card-body">
+        <form method="post" action="{{ url_for('new_artwork') }}" id="artworkForm">
+          <div class="form-group">
+            <label for="artwork_id">Artwork ID</label>
+            <input type="number" class="form-control" id="artwork_id" name="artwork_id">
+          </div>
+          <div class="form-group">
+            <label for="artist_id">Artist ID</label>
+            <input type="number" class="form-control" id="artist_id" name="artist_id">
+          </div>
+           <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+          </div>
+          <div class="form-group">
+            <label for="dimensions">Dimensions</label>
+            <input type="text" class="form-control" id="dimensions" name="dimensions">
+          </div>
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="text" class="form-control" id="date" name="date">
+          </div>
+          <div class="form-group">
+            <label for="classification">Classification</label>
+            <input type="text" class="form-control" id="classification" name="classification">
+          </div>
+          <div class="form-group">
+            <label for="medium">Medium</label>
+            <input type="text" class="form-control" id="medium" name="medium">
+          </div>
+          <div class="form-group">
+            <label for="acquisitionDate">Acquisition Date</label>
+            <input type="text" class="form-control" id="acquisitionDate" name="acquisitionDate">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Back</a>
+  </div>
+</body>
+</html>

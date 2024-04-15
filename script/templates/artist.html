@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist Info</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-size: 36px;
+      text-align: center;
+    }
+    .form-control {
+      border-radius: 5px;
+    }
+    .btn-primary {
+      border-radius: 5px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/index">MMA</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+         {% if user_type == 'admin' %}
+         <li class="nav-item">
+          <a class="nav-link" href="/artists/new">New Artist</a>
+         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/artworks/new">New Artwork</a>
+        </li>
+          {% endif %}
+        <li class="nav-item">
+          {% if user_type != 'admin' %}
+          <a class="btn btn-primary ml-2" href="/login">Login</a>
+          {% else %}
+          <a class="btn btn-primary ml-2" href="/logout">Logout</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <h1>Artist Info</h1>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Basic Info</h5>
+        <form method="post" action="{{ url_for('update_artist') }}" id="artistForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ info['name'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="nationality">Nationality</label>
+            <input type="text" class="form-control" id="nationality" name="nationality" value="{{ info['nationality'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" class="form-control" id="gender" name="gender" value="{{ info['gender'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" class="form-control" id="age" name="age" value="{{ info['age'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="birthYear">Birth Year</label>
+            <input type="text" class="form-control" id="birthYear" name="birthYear" value="{{ info['birth_year'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+          <div class="form-group">
+            <label for="deathYear">Death Year</label>
+            <input type="text" class="form-control" id="deathYear" name="deathYear" value="{{ info['death_year'] }}" {% if user_type != 'admin' %} readonly {% endif %}>
+          </div>
+           <input type="hidden" name="artist_id" value="{{ info['artist_id'] }}">
+          {% if user_type == 'admin' %}
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="{{ url_for('delete_artist', artist_id=info['artist_id']) }}"><button type="button" class="btn btn-primary">Delete</button></a>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Artworks</h5>
+        <ul class="list-group">
+          {% for artwork in artworks %}
+          <li class="list-group-item"><a href="{{ url_for('get_artwork', artwork_id=artwork['Artwork ID']) }}">{{ artwork['Title'] }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Back</a>
+  </div>
+</body>
+</html>
