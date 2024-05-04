@@ -18,4 +18,13 @@ For instance you can do like this in you cmd.
 ![image](https://github.com/taigezhang/dsci-551-final-project/assets/43013752/82762e86-f81f-4471-97da-0eff8af64979)
 
 
-5.  
+5.  Copy the link to a web Browser:
+![image](https://github.com/taigezhang/dsci-551-final-project/assets/43013752/d30f3511-3bea-469a-a1d9-e87d7b31b247)
+
+
+6.  You can see the main page:
+
+![image](https://github.com/taigezhang/dsci-551-final-project/assets/43013752/64ca24b8-695d-465e-b9a9-9077d3ed62fb)
+
+    
+7.  
