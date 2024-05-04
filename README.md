@@ -27,4 +27,20 @@ For instance you can do like this in you cmd.
 ![image](https://github.com/taigezhang/dsci-551-final-project/assets/43013752/64ca24b8-695d-465e-b9a9-9077d3ed62fb)
 
     
-7.  
+7.  click the login button to gain the adminster right.
+![image](https://github.com/taigezhang/dsci-551-final-project/assets/43013752/3f7c39eb-0bbc-4498-86f1-7ecca237563c)
+ You can input the username and password you set in the step3
+
+
+8.  Now you have the right to manage the databse.
+
+9.Input one artist name (for example:Fumihiko Maki/Bill Arnold, etc)  
+
+![image](https://github.com/taigezhang/dsci-551-final-project/assets/43013752/ad921dc8-90f6-48d3-a615-6dae3fcf98fe)
+The top-right button, could allow us to add new artist or new artowrk in the database. 
+If you want to change the information of an item, just change the information and click submit.If you click delete, it will delte the item
+The downside link contains the link to the specific artworks of the artist.
+At the buttom of the page, there is a back button to go back to the main page
+
+10.  Click Logout button, then you will be marked as a visitor, and only have the search function but could not modify data in the database.
+11.  Thanks
